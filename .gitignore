@@ -13,3 +13,7 @@ npm-debug.log
 yarn-error.log
 /.idea
 /.vscode
+
+# Ignore profile photos
+/storage/app/public/profile-photos/
+/public/profile-photos/
