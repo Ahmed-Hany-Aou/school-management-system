@@ -48,11 +48,13 @@ class UserController extends Controller
                 'alert-type' => 'success'
             );
 
-            return redirect()->route('user.view')->with($notification);
+            return redirect()->route('user.view')->with($notification)->withInput([]);
 
         } catch (\Exception $e) {
             // dd('Error:', $e->getMessage());
-            return redirect()->back()->with('error', 'Error creating user: ' . $e->getMessage());
+            return redirect()->back()
+                ->with('error', 'Error creating user: ' . $e->getMessage())
+                ->withInput($request->except('password'));
         }
     }
 
@@ -67,20 +69,30 @@ class UserController extends Controller
 
 
     public function UserUpdate(Request $request, $id){
+        try {
+            $validatedData = $request->validate([
+                'email' => 'required|unique:users,email,'.$id,
+                'name' => 'required',
+                'usertype' => 'required'
+            ]);
 
-    	$data = User::find($id);
-    	$data->name = $request->name;
-    	$data->email = $request->email;
-        $data->role = $request->role;
-    	$data->save();
+            $data = User::find($id);
+            $data->name = $request->name;
+            $data->email = $request->email;
+            $data->usertype = $request->usertype;
+            $data->save();
 
-    	$notification = array(
-    		'message' => 'User Updated Successfully',
-    		'alert-type' => 'info'
-    	);
+            $notification = array(
+                'message' => 'User Updated Successfully',
+                'alert-type' => 'info'
+            );
 
-    	return redirect()->route('user.view')->with($notification);
+            return redirect()->route('user.view')->with($notification);
 
+        } catch (\Exception $e) {
+            // dd('Error:', $e->getMessage());
+            return redirect()->back()->with('error', 'Error updating user: ' . $e->getMessage());
+        }
     }
 
 
