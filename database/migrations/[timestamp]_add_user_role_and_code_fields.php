@@ -1,23 +1,26 @@
+<?php
+
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AddNewColumnsToUsersTable extends Migration
+class AddUserRoleAndCodeFields extends Migration
 {
     public function up()
     {
         Schema::table('users', function (Blueprint $table) {
-            // Add new columns here
-            $table->string('role')->nullable();
-            $table->string('code')->nullable();
-            // Add other columns as needed
+            if (!Schema::hasColumn('users', 'role')) {
+                $table->string('role')->nullable();
+            }
+            if (!Schema::hasColumn('users', 'code')) {
+                $table->string('code')->nullable();
+            }
         });
     }
 
     public function down()
     {
         Schema::table('users', function (Blueprint $table) {
-            // Remove columns if rolling back
             $table->dropColumn(['role', 'code']);
         });
     }
