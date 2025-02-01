@@ -20,7 +20,7 @@
 			  <div class="row">
 				<div class="col">
 
-	 <form method="post" action="{{ route('users.store') }}">
+	 <form method="post" action="{{ route('users.store') }}" autocomplete="off">
 	 	@csrf
 					  <div class="row">
 						<div class="col-12">	
@@ -34,9 +34,9 @@
 	<div class="controls">
 	 <select name="usertype" id="usertype" required="" class="form-control">
 			<option value="" selected="" disabled="">Select Role</option>
-			<option value="Student">Student</option>
-			<option value="Employee">Employee</option>
-			<option value="Admin">Admin</option>
+			<option value="Student" {{ old('usertype') == 'Student' ? 'selected' : '' }}>Student</option>
+			<option value="Employee" {{ old('usertype') == 'Employee' ? 'selected' : '' }}>Employee</option>
+			<option value="Admin" {{ old('usertype') == 'Admin' ? 'selected' : '' }}>Admin</option>
 		</select>
 	 </div>
           </div>
@@ -46,7 +46,7 @@
 	<div class="form-group">
 		<h5>User Name <span class="text-danger">*</span></h5>
 		<div class="controls">
-	 <input type="text" name="name" class="form-control" required="">  </div>
+	 <input type="text" name="name" class="form-control" required="" value="{{ old('name') }}" autocomplete="off">  </div>
 		 
 	</div>
 
@@ -63,7 +63,7 @@
 		<div class="form-group">
 		<h5>User Email <span class="text-danger">*</span></h5>
 		<div class="controls">
-	 <input type="email" name="email" class="form-control" required="">  </div>
+	 <input type="email" name="email" class="form-control" required="" value="{{ old('email') }}" autocomplete="off">  </div>
 		 
 	</div>
 
@@ -73,7 +73,7 @@
 		<div class="form-group">
 		<h5>Password <span class="text-danger">*</span></h5>
 		<div class="controls">
-	 		<input type="password" name="password" class="form-control" required="">  
+	 		<input type="password" name="password" class="form-control" required="" autocomplete="new-password">  
 		</div>
 		</div>
 	</div><!-- End Col Md-6 -->
