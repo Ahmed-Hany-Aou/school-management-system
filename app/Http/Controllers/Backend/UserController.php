@@ -29,7 +29,8 @@ class UserController extends Controller
                 'email' => 'required|unique:users',
                 'name' => 'required',
                 'usertype' => 'required',
-                'password' => 'required|min:6',
+                'password' => 'required|min:6|confirmed',
+                'password_confirmation' => 'required'
             ]);
 
             $data = new User();
@@ -48,13 +49,13 @@ class UserController extends Controller
                 'alert-type' => 'success'
             );
 
-            return redirect()->route('user.view')->with($notification)->withInput([]);
+            return redirect()->route('user.view')->with($notification);
 
         } catch (\Exception $e) {
             // dd('Error:', $e->getMessage());
             return redirect()->back()
                 ->with('error', 'Error creating user: ' . $e->getMessage())
-                ->withInput($request->except('password'));
+                ->withInput($request->except(['password', 'password_confirmation']));
         }
     }
 
@@ -62,8 +63,7 @@ class UserController extends Controller
 
     public function UserEdit($id){
     	$editData = User::find($id);
-    	return view('backend.user.edit_user',compact('editData'));
-
+    	return view('backend.user.edit_user', compact('editData'));
     }
 
 
@@ -73,13 +73,20 @@ class UserController extends Controller
             $validatedData = $request->validate([
                 'email' => 'required|unique:users,email,'.$id,
                 'name' => 'required',
-                'usertype' => 'required'
+                'usertype' => 'required',
+                'password' => 'nullable|min:6|confirmed',
+                'password_confirmation' => 'nullable'
             ]);
 
             $data = User::find($id);
             $data->name = $request->name;
             $data->email = $request->email;
             $data->usertype = $request->usertype;
+            
+            if($request->password) {
+                $data->password = bcrypt($request->password);
+            }
+            
             $data->save();
 
             $notification = array(
@@ -98,16 +105,19 @@ class UserController extends Controller
 
 
     public function UserDelete($id){
-    	$user = User::find($id);
-    	$user->delete();
+        try {
+            $user = User::find($id);
+            $user->delete();
 
-    	$notification = array(
-    		'message' => 'User Deleted Successfully',
-    		'alert-type' => 'info'
-    	);
+            $notification = array(
+                'message' => 'User Deleted Successfully',
+                'alert-type' => 'info'
+            );
 
-    	return redirect()->route('user.view')->with($notification);
-
+            return redirect()->route('user.view')->with($notification);
+        } catch (\Exception $e) {
+            return redirect()->back()->with('error', 'Error deleting user: ' . $e->getMessage());
+        }
     }
 
 
