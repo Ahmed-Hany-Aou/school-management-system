@@ -20,7 +20,7 @@
 			  <div class="row">
 				<div class="col">
 
-	 <form method="post" action="{{ route('users.update', $editData->id) }}" autocomplete="off">
+	 <form method="post" action="{{ route('users.update', $editData->id) }}" autocomplete="off" onsubmit="return handleFormSubmit(event)">
 	 	@csrf
 					  <div class="row">
 						<div class="col-12">	
@@ -86,7 +86,7 @@
             <div class="input-group">
                 <input type="password" id="password" name="password" class="form-control" autocomplete="new-password" pattern=".{6,}">
                 <div class="input-group-append">
-                    <button type="button" class="btn btn-secondary" onclick="document.getElementById('password').type = document.getElementById('password').type === 'password' ? 'text' : 'password'; this.textContent = document.getElementById('password').type === 'password' ? 'Show' : 'Hide'">Show</button>
+                    <button type="button" class="btn btn-secondary" onclick="togglePassword('password')">Show</button>
                 </div>
             </div>
             <small>Leave blank to keep current password</small>
@@ -99,7 +99,7 @@
             <div class="input-group">
                 <input type="password" id="password_confirmation" name="password_confirmation" class="form-control">
                 <div class="input-group-append">
-                    <button type="button" class="btn btn-secondary" onclick="document.getElementById('password_confirmation').type = document.getElementById('password_confirmation').type === 'password' ? 'text' : 'password'; this.textContent = document.getElementById('password_confirmation').type === 'password' ? 'Show' : 'Hide'">Show</button>
+                    <button type="button" class="btn btn-secondary" onclick="togglePassword('password_confirmation')">Show</button>
                 </div>
             </div>
         </div>
@@ -131,5 +131,24 @@
 	  
 	  </div>
   </div>
+
+<script>
+    function handleFormSubmit(event) {
+        event.preventDefault(); // Prevent the default form submission
+        event.target.submit(); // Submit the form
+    }
+
+    function togglePassword(fieldId) {
+        var field = document.getElementById(fieldId);
+        var button = field.nextElementSibling.querySelector('button');
+        if (field.type === "password") {
+            field.type = "text";
+            button.textContent = "Hide";
+        } else {
+            field.type = "password";
+            button.textContent = "Show";
+        }
+    }
+</script>
 
 @endsection
