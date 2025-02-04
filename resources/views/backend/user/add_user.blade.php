@@ -11,7 +11,12 @@
                 <div class="box-body">
                     <div class="row">
                         <div class="col">
-                            <form method="post" action="{{ route('users.store') }}" autocomplete="off">
+                            @if(session('success'))
+                                <div class="alert alert-success">
+                                    {{ session('success') }}
+                                </div>
+                            @endif
+                            <form method="post" action="{{ route('users.store') }}" autocomplete="off" onsubmit="return handleFormSubmit(event)">
                                 @csrf
                                 <div class="row">
                                     <div class="col-md-6">
@@ -51,7 +56,7 @@
                                             <div class="input-group">
                                                 <input type="password" id="password" name="password" class="form-control" required autocomplete="new-password" pattern=".{6,}">
                                                 <div class="input-group-append">
-                                                    <button type="button" class="btn btn-secondary toggle-password" data-target="password">Show</button>
+                                                    <button type="button" class="btn btn-secondary" onclick="togglePassword('password')">Show</button>
                                                 </div>
                                             </div>
                                         </div>
@@ -64,7 +69,7 @@
                                             <div class="input-group">
                                                 <input type="password" id="password_confirmation" name="password_confirmation" class="form-control" required>
                                                 <div class="input-group-append">
-                                                    <button type="button" class="btn btn-secondary toggle-password" data-target="password_confirmation">Show</button>
+                                                    <button type="button" class="btn btn-secondary" onclick="togglePassword('password_confirmation')">Show</button>
                                                 </div>
                                             </div>
                                         </div>
@@ -83,17 +88,22 @@
 </div>
 
 <script>
-    const passwordToggles = document.querySelectorAll('.toggle-password');
+    function handleFormSubmit(event) {
+        event.preventDefault(); // Prevent the default form submission
+        event.target.submit(); // Submit the form
+    }
 
-    passwordToggles.forEach(toggle => {
-        toggle.addEventListener('click', () => {
-            const targetId = toggle.dataset.target;
-            const input = document.getElementById(targetId);
-            const type = input.type === 'password' ? 'text' : 'password';
-            input.type = type;
-            toggle.textContent = type === 'password' ? 'Show' : 'Hide';
-        });
-    });
+    function togglePassword(fieldId) {
+        var field = document.getElementById(fieldId);
+        var button = field.nextElementSibling.querySelector('button');
+        if (field.type === "password") {
+            field.type = "text";
+            button.textContent = "Hide";
+        } else {
+            field.type = "password";
+            button.textContent = "Show";
+        }
+    }
 </script>
 
 @endsection

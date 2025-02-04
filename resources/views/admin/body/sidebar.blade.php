@@ -54,8 +54,8 @@ $route = Route::current()->getName();
            </span>
          </a>
          <ul class="treeview-menu">
-       <li><a href="#{{-- {{ route('profile.view') }} --}}"><i class="ti-more"></i>Your Profile</a></li>
-       <li><a href="#{{-- {{ route('password.view') }} --}}"><i class="ti-more"></i>Change Password</a></li>
+       <li><a href="{{ route('profile.view') }} "><i class="ti-more"></i>Your Profile</a></li>
+       <li><a href="{{ route('password.view') }} "><i class="ti-more"></i>Change Password</a></li>
            
          </ul>
        </li>
