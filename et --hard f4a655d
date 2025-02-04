@@ -1,0 +1,20 @@
+[33mf87a033[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mstaging[m[33m, [m[1;31morigin/staging[m[33m, [m[1;32musers[m[33m)[m Merge pull request #19 from Ahmed-Hany-Aou/users
+[33mf4a655d[m[33m ([m[1;31morigin/users[m[33m)[m finished user profile manager, there is a small wrong senario in user change password , if current pass is wrong sweet alert is not poping out
+[33mab526e9[m Merge pull request #17 from Ahmed-Hany-Aou/users
+[33mb3eff60[m Implemented user management features: - Added functionality for adding, editing, and deleting users with SweetAlert for better user experience. - Integrated toggle functionality for password visibility in both add and edit user forms. - Ensured password confirmation fields are included and validated. - Improved code structure and consistency across user forms. - Note: JavaScript alert for showing passwords has not been removed.
+[33mc814ca8[m Merge pull request #14 from Ahmed-Hany-Aou/users
+[33mfeb4496[m handeled to stop auto complete function in add user view , not in scope of project
+[33m2ccdf55[m Merge pull request #12 from Ahmed-Hany-Aou/users
+[33m54203bf[m handeled adding user function with sweetaleart
+[33ma296a88[m Merge pull request #10 from Ahmed-Hany-Aou/users
+[33mbc97ad5[m handeled view users in backend
+[33m1d4bf66[m Merge pull request #8 from Ahmed-Hany-Aou/customize_dashboard
+[33m56d0483[m[33m ([m[1;31morigin/customize_dashboard[m[33m, [m[1;32mcustomize_dashboard[m[33m)[m handeled customized login page
+[33m35b3b14[m Merge pull request #6 from Ahmed-Hany-Aou/customize_dashboard
+[33me124624[m handeled logout option
+[33m94b6e0a[m Merge pull request #4 from Ahmed-Hany-Aou/customize_dashboard
+[33mc646748[m customized dashboard
+[33m8008d6f[m Merge pull request #2 from Ahmed-Hany-Aou/jetstream
+[33m55eadf8[m[33m ([m[1;31morigin/jetstream[m[33m, [m[1;32mjetstream[m[33m)[m handeled profile update images
+[33me699d49[m fixed @vite problem
+[33ma996232[m[33m ([m[1;31morigin/master[m[33m, [m[1;32mmaster[m[33m)[m Initial commit: Add project README
