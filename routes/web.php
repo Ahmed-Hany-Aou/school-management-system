@@ -14,6 +14,7 @@ use App\Http\Controllers\Backend\Setup\ExamTypeController;
 use App\Http\Controllers\Backend\Setup\SchoolSubjectController;
 use App\Http\Controllers\Backend\Setup\AssignSubjectController;
 use App\Http\Controllers\Backend\Setup\DesignationController;
+use App\Http\Controllers\Backend\Student\StudentRegController;
 
 
 
@@ -39,23 +40,23 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
 Route::  get('/admin/logout', [AdminController::class, 'Logout'])->name('admin.logout'); 
 
 
-// User Management All Route
+// User Management All Routes 
 
 Route::prefix('users')->group(function(){
 
-    Route::get('/user/view', [UserController::class, 'UserView'])->name('user.view');
-
-    Route::get('/user/add', [UserController::class, 'UserAdd'])->name('users.add');
-
-    Route::post('/user/store', [UserController::class, 'UserStore'])->name('users.store');
-
-    Route::get('/user/edit/{id}', [UserController::class, 'UserEdit'])->name('users.edit');
-
-    Route::post('/user/update/{id}', [UserController::class, 'UserUpdate'])->name('users.update');
-
-    Route::get('/user/delete/{id}', [UserController::class, 'UserDelete'])->name('users.delete');
-
-});
+    Route::get('/view', [UserController::class, 'UserView'])->name('user.view');
+    
+    Route::get('/add', [UserController::class, 'UserAdd'])->name('users.add');
+    
+    Route::post('/store', [UserController::class, 'UserStore'])->name('users.store');
+    
+    Route::get('/edit/{id}', [UserController::class, 'UserEdit'])->name('users.edit');
+    Route::post('/update/{id}', [UserController::class, 'UserUpdate'])->name('users.update');
+    
+    Route::get('/delete/{id}', [UserController::class, 'UserDelete'])->name('users.delete');
+    
+    }); 
+    
 
 /// User Profile and Change Password 
 Route::prefix('profile')->group(function(){
@@ -230,7 +231,33 @@ Route::post('designation/update/{id}', [DesignationController::class, 'Designati
 Route::get('designation/delete/{id}', [DesignationController::class, 'DesignationDelete'])->name('designation.delete');
 
 
-}); 
+});
+
+
+/// Student Registration Routes  
+Route::prefix('students')->group(function(){
+
+    Route::get('/reg/view', [StudentRegController::class, 'StudentRegView'])->name('student.registration.view');
+    
+    Route::get('/reg/Add', [StudentRegController::class, 'StudentRegAdd'])->name('student.registration.add');
+    
+    Route::post('/reg/store', [StudentRegController::class, 'StudentRegStore'])->name('store.student.registration');
+     
+    Route::get('/year/class/wise', [StudentRegController::class, 'StudentClassYearWise'])->name('student.year.class.wise');
+    
+    Route::get('/reg/edit/{student_id}', [StudentRegController::class, 'StudentRegEdit'])->name('student.registration.edit');
+    
+    Route::post('/reg/update/{student_id}', [StudentRegController::class, 'StudentRegUpdate'])->name('update.student.registration');
+    
+    Route::get('/reg/promotion/{student_id}', [StudentRegController::class, 'StudentRegPromotion'])->name('student.registration.promotion');
+    
+    Route::post('/reg/update/promotion/{student_id}', [StudentRegController::class, 'StudentUpdatePromotion'])->name('promotion.student.registration');
+    
+    Route::get('/reg/details/{student_id}', [StudentRegController::class, 'StudentRegDetails'])->name('student.registration.details');
+    
+    
+    }); 
+    
 
 
 
