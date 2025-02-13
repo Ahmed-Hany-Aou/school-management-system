@@ -43,6 +43,9 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
 
 Route::  get('/admin/logout', [AdminController::class, 'Logout'])->name('admin.logout'); 
 
+Route::group(['middleware' => 'auth'],function(){
+
+
 
 // User Management All Routes 
 
@@ -298,6 +301,7 @@ Route::get('/exam/fee/payslip', [ExamFeeController::class, 'ExamFeePayslip'])->n
  
 
 
+}); // End Middleare Auth Route 
 
 
 
