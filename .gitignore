@@ -17,3 +17,12 @@ yarn-error.log
 # Ignore profile photos
 /storage/app/public/profile-photos/
 /public/profile-photos/
+
+# Ignore image files
+*.png
+*.jpg
+*.jpeg
+*.gif
+
+# Ignore all files in the public/upload directory
+public/upload/
