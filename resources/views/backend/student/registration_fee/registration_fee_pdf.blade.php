@@ -29,9 +29,13 @@
 <body>
 
 
-<table id="customers">
-  <tr>
-    <td><h2>Easy Learning</h2></td>
+  <table id="customers">
+    <tr>
+     <td><h2>
+    <?php $image_path = '/upload/oldhany.jpg'; ?>
+    <img src="{{ public_path() . $image_path }}" width="300" height="300">
+  
+      </h2></td>
     <td><h2>Easy School ERP</h2>
 <p>School Address</p>
 <p>Phone : 343434343434</p>
