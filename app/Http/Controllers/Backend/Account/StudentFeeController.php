@@ -63,7 +63,7 @@ if($accountstudentfees !=null) {
  	 $finalfee = (int)$orginalfee-(int)$discountablefee;    	 	 
  	$html[$key]['tdsource'] .='<td>'. '<input type="text" name="amount[]" value="'.$finalfee.' " class="form-control" readonly'.'</td>';
  	 
- 	$html[$key]['tdsource'] .='<td>'.'<input type="hidden" name="student_id[]" value="'.$std->student_id.'">'.'<input type="checkbox" name="checkmanage[]" id="id{{$key}}" value="'.$key.'" '.$checked.' style="transform: scale(1.5);margin-left: 10px;"> <label for="id{{$key}}"> </label> '.'</td>'; 
+ 	$html[$key]['tdsource'] .='<td>'.'<input type="hidden" name="student_id[]" value="'.$std->student_id.'">'.'<input type="checkbox" name="checkmanage[]" id="id'.$key.'" value="'.$key.'" '.$checked.' style="transform: scale(1.5);margin-left: 10px;"> <label for="id'.$key.'"> </label> '.'</td>'; 
     	 }  
     	return response()->json(@$html);
    } // end mehtod
@@ -101,4 +101,3 @@ if($accountstudentfees !=null) {
     } // end method 
     
 }
- 
