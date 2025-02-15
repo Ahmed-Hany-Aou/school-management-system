@@ -30,6 +30,9 @@ use App\Http\Controllers\Backend\Marks\MarksController;
 use App\Http\Controllers\Backend\DefaultController;
 
 use App\Http\Controllers\Backend\Marks\GradeController;
+
+use App\Http\Controllers\Backend\Account\StudentFeeController;
+use App\Http\Controllers\Backend\Account\AccountSalaryController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -386,11 +389,19 @@ Route::get('marks/getsubject', [DefaultController::class, 'GetSubject'])->name('
 Route::get('student/marks/getstudents', [DefaultController::class, 'GetStudents'])->name('student.marks.getstudents');
 
 
+/// Marks Management Routes  
+Route::prefix('accounts')->group(function(){
+    Route::get('student/fee/view', [StudentFeeController::class, 'StudentFeeView'])->name('student.fee.view');
+    Route::get('student/fee/add', [StudentFeeController::class, 'StudentFeeAdd'])->name('student.fee.add');
+    Route::get('student/fee/getstudent', [StudentFeeController::class, 'StudentFeeGetStudent'])->name('account.fee.getstudent'); 
+    Route::post('student/fee/store', [StudentFeeController::class, 'StudentFeeStore'])->name('account.fee.store'); 
+  
 
 
+});
 
-});// End Middleare Auth Route 
 
+}); // End Middleare Auth Route  
 
  
  
