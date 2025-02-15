@@ -165,8 +165,8 @@ class EmployeeRegController extends Controller
     public function EmployeeDetails($id){
     	$data['details'] = User::find($id);
 
-        $pdf = PDF::loadView('backend.employee.employee_reg.employee_details_pdf', $data);
-        return $pdf->stream('document.pdf');
+    $pdf = PDF::loadView('backend.employee.employee_reg.employee_details_pdf', $data);
+	return $pdf->stream('document.pdf');
 
     }
 
