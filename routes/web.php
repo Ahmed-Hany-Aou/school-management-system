@@ -39,6 +39,7 @@ use App\Http\Controllers\Backend\Account\OtherCostController;
 use App\Http\Controllers\Backend\Report\ProfiteController;
 
 use App\Http\Controllers\Backend\Report\MarkSheetController;
+use App\Http\Controllers\Backend\Report\AttenReportController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -432,6 +433,14 @@ Route::prefix('reports')->group(function(){
 // MarkSheet Generate Routes 
 Route::get('marksheet/generate/view', [MarkSheetController::class, 'MarkSheetView'])->name('marksheet.generate.view');
 Route::get('marksheet/generate/get', [MarkSheetController::class, 'MarkSheetGet'])->name('report.marksheet.get');
+
+
+// Attendance Report Routes 
+Route::get('attendance/report/view', [AttenReportController::class, 'AttenReportView'])->name('attendance.report.view');
+Route::get('report/attendance/get', [AttenReportController::class, 'AttenReportGet'])->name('report.attendance.get');
+
+
+
 
 }); // End Middleare Auth Route  
 
