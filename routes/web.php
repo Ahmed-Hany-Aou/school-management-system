@@ -38,6 +38,7 @@ use App\Http\Controllers\Backend\Account\OtherCostController;
 
 use App\Http\Controllers\Backend\Report\ProfiteController;
 
+use App\Http\Controllers\Backend\Report\MarkSheetController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -428,7 +429,9 @@ Route::prefix('reports')->group(function(){
     Route::get('monthly/profit/pdf', [ProfiteController::class, 'MonthlyProfitPdf'])->name('report.profit.pdf');
      
     }); 
-
+// MarkSheet Generate Routes 
+Route::get('marksheet/generate/view', [MarkSheetController::class, 'MarkSheetView'])->name('marksheet.generate.view');
+Route::get('marksheet/generate/get', [MarkSheetController::class, 'MarkSheetGet'])->name('report.marksheet.get');
 
 }); // End Middleare Auth Route  
 
