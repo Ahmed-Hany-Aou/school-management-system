@@ -13,7 +13,12 @@ use App\Models\Designation;
 
 class User extends Authenticatable
 {
-    use HasApiTokens, HasFactory, HasProfilePhoto, Notifiable, TwoFactorAuthenticatable;
+    use HasApiTokens;
+    use HasFactory;
+    use HasProfilePhoto;
+    use Notifiable;
+    use TwoFactorAuthenticatable;
+  
 
     /**
      * The attributes that are mass assignable.
@@ -57,19 +62,8 @@ class User extends Authenticatable
     protected $appends = [
         'profile_photo_url',
     ];
-
     public function designation(){
         return $this->belongsTo(Designation::class, 'designation_id','id');
-    }
-
-    public function studentMarks()
-    {
-        return $this->hasMany(StudentMarks::class, 'student_id', 'id');
-    }
-
-    public function father()
-    {
-        return $this->belongsTo(User::class, 'father_id', 'id'); // Assuming father_id is the foreign key
     }
 }
 
